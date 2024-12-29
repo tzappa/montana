@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Solitaire Montana</title>
+	<link rel="stylesheet" href="montana.css" />
+</head>
+<body>
+	<main class="montana">
+		<h1>Solitaire Montana</h1>
+		<div class="controls">
+			<button class="game-button new-game-button">New Game</button>
+			<button class="game-button" id="shuffleButton">Shuffle (<span id="shufflesLeft">3</span> left)</button>
+		</div>
+		<div class="table">
+			<div id="table">
+			</div>
+		</div>
+		<div class="game-over" id="gameOver" style="display:none;">
+			<div>
+				<div class="card-title">Congratulations! You won!</div>
+				<p>Do you want to play again?</p>
+				<br>
+				<button class="game-button" id="gameOverClose">Not now</button>&nbsp;&nbsp;&nbsp;
+				<button class="game-button new-game-button">Yes!</button>
+			</div>
+		</div>
+	</main>
+	<script src="montana.js"></script>
+</body>
+</html>
