@@ -6,15 +6,15 @@ class Montana {
 		this.dealing = true;
 		this.gameEnded = true;
 		if (table.offsetWidth < 900) {
-			imgPath += 'compact/';
-			imgExt = '.png';
+			Card.imgPath += 'compact/';
+			Card.imgExt = '.png';
 		} else {
-			imgPath += 'set6/';
-			imgExt = '.svg';
+			Card.imgPath += 'set6/';
+			Card.imgExt = '.svg';
 		}
 		this.piles = [];
-		for (let suit of Suits) {
-			for (let rank of Ranks) {
+		for (let suit of Suit.list) {
+			for (let rank of Rank.list) {
 				let pile = new Pile(parent);
 				pile.onClick(() => this.pileClick(pile));
 				this.piles.push(pile);
@@ -111,7 +111,7 @@ class Montana {
 				continue;
 			}
 			let card = pile.topCard();
-			if (card.rank !== Ranks[col]) {
+			if (card.rank !== Rank.list[col]) {
 				rowSuit = null;
 				win = false;
 				continue;
@@ -149,13 +149,13 @@ class Montana {
 				if (leftCard.rank === 'K') { // king blocks
 					return;
 				}
-				let card = this.deck.findDeckCard(Ranks[Ranks.indexOf(leftCard.rank) + 1] + leftCard.suit);
+				let card = this.deck.findDeckCard(Rank.next(leftCard.rank) + leftCard.suit);
 				pile.addCard(card);
 				this.checkWin();
 				return ;
 			}
 			// find card with rank 2 which is not ot the 1st position
-			for (let suit of Suits) {
+			for (let suit of Suit.list) {
 				let card = this.deck.findDeckCard('2' + suit);
 				if (this.piles.indexOf(card.pile) % 13 !== 0) {
 					pile.addCard(card);
@@ -181,7 +181,7 @@ class Montana {
 			return;
 		}
 		// find the card with the same suit and the previous rank
-		let prevCard = this.deck.findDeckCard(Ranks[Ranks.indexOf(card.rank) - 1] + card.suit);
+		let prevCard = this.deck.findDeckCard(Rank.prev(card.rank) + card.suit);
 		let rightPile = this.rightPile(prevCard.pile);
 		if (rightPile.isEmpty()) {
 			rightPile.addCard(card);
