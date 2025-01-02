@@ -7,19 +7,20 @@ body {
 	margin: 0 auto;
 	max-width: 1024px;
 }
-h1 {
+.montana h1 {
 	text-align: center;
 	font-size: 2em;
 	padding: 0;
 	margin: 0 0 10px;
 }
-
+.montana .controls {
+	margin: 8px 0;
+}
 .montana .table {
 	background-color: darkgreen;
 	padding: 10px;
 }
-
-#table {
+.montana .table>div {
 	display: grid;
 	grid-template-rows: repeat(4, 1fr);
 	grid-template-columns: repeat(13, 1fr);
@@ -28,52 +29,7 @@ h1 {
 	margin: 0 auto;
 	max-width: 1024px;
 }
-
-
-#drawPile {
-	grid-area: 1/1/2/2;
-}
-#discardPile {
-	grid-area: 1/2/2/3;
-}
-#table>div#game-buttons {
-	grid-area: 1/3/2/4;
-}
-#foundation-spades {
-	grid-area: 1/4/2/5;
-}
-#foundation-hearts {
-	grid-area: 1/5/2/6;
-}
-#foundation-diamonds {
-	grid-area: 1/6/2/7;
-}
-#foundation-clubs {
-	grid-area: 1/7/2/8;
-}
-#pile1 {
-	grid-area: 2/1/3/2;
-}
-#pile2{
-	grid-area: 2/2/3/3;
-}
-#pile3 {
-	grid-area: 2/3/3/4;
-}
-#pile4 {
-	grid-area: 2/4/3/5;
-}
-#pile5 {
-	grid-area: 2/5/3/6;
-}
-#pile6 {
-	grid-area: 2/6/3/7;
-}
-#pile7 {
-	grid-area: 2/7/3/8;
-}
-
-.pile {
+.montana .pile {
 	width: 100%;
 	border-radius: 6%;
 	border: 1px solid #333;
@@ -82,8 +38,7 @@ h1 {
 	cursor: pointer;
 	font-size: 40px;
 }
-
-.card {
+.montana .card {
 	width: 100%;
 	height: 100%;
 	display: inline-flex;
@@ -95,44 +50,28 @@ h1 {
 	cursor: pointer;
 	position: absolute;
 }
-
-div.card {
-	border-radius: 6%;
-	border: 2px solid #000;
-}
-
-img.card {
+.montana img.card {
 	width: 100%;
 	border-radius: 6%;
 	border: 1px solid #000;
 }
-
-.card.selected {
+.montana .card.selected {
 	box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.5);
 	opacity: 0.5;
 }
-
-.clubs {
+.montana .clubs {
 	color: black;
 }
-
-.diamonds {
+.montana .diamonds {
 	color: red;
 }
-
-.hearts {
+.montana .hearts {
 	color: red;
 }
-
-.spades {
+.montana .spades {
 	color: black;
 }
-
-.facedown {
-	color: #80917b;
-	background-color: #80917b;
-}
-.game-over {
+.montana .game-over {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -144,11 +83,7 @@ img.card {
 	z-index: 1001;
 	display: flex;
 }
-.card-title {
-	text-align: center;
-	font-size: 1.6em;
-}
-.game-over>div {
+.montana .game-over>div {
 	background-color: white;
 	padding: 20px;
 	border-radius: 10px;
@@ -156,7 +91,7 @@ img.card {
 	color: black;
 	width: 380px;
 }
-.game-button, a.game-button {
+.montana .game-button {
     font-family: Arial, Verdana, Tahoma;
     font-size: 1em;
     padding: .2em .4em;
@@ -180,8 +115,11 @@ img.card {
     line-height: 1.5em;
 }
 @media (max-width: 600px) {
-	.game-button, a.game-button {
+	.montana .game-button {
 		font-size: .8em;
 		padding: .1em .2em;
+	}
+	.montana .table>div {
+		gap: 0.2em 0.1em;
 	}
 }
