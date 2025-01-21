@@ -2,6 +2,7 @@ let animationSpeed = 10; // ms for card animation
 
 class Montana {
 	constructor(parent) {
+		Rank.list = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 		this.shufflesLeft = 3;
 		this.dealing = true;
 		this.gameEnded = true;
@@ -16,7 +17,7 @@ class Montana {
 		for (let suit of Suit.list) {
 			for (let rank of Rank.list) {
 				let pile = new Pile(parent);
-				pile.onClick(() => this.pileClick(pile));
+				pile.onClick = this.pileClick.bind(this, pile);
 				this.piles.push(pile);
 			}
 		}
@@ -67,18 +68,17 @@ class Montana {
 	}
 
 	dealCard() {
-		let card = this.deck.topCard();
-		if (card) {
-			card.unmark();
-			for (let pile of this.piles) {
-				if (pile.isEmpty()) {
-					this.deck.drawCard(pile);
-					setTimeout(() => this.dealCard(), animationSpeed);
-					return;
-				}
-			}
-		} else {
+		if (this.deck.isEmpty()) {
 			setTimeout(() => this.discardAces(), animationSpeed);
+			return;
+		}
+		for (let pile of this.piles) {
+			if (pile.isEmpty()) {
+				let card = this.deck.drawCard(pile);
+				card.unmark();
+				setTimeout(() => this.dealCard(), animationSpeed);
+				return;
+			}
 		}
 	}
 
